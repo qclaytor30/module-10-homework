@@ -1,5 +1,28 @@
 {
+  "name": "module-10-homework",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "directories": {
+    "lib": "lib",
+    "test": "tests"
+  },
+  "scripts": {
+    "start": "node index.js",
+    "test": "jest"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/qclaytor30/module-10-homework"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/qclaytor30/module-10-homework/issues"
+  },
+  "homepage": "https://github.com/qclaytor30/module-10-homework#readme",
   "dependencies": {
-    "inquirer": "^9.1.2"
+    "inquirer": "^8.2.4",
+    "jest": "^28.1.3"
   }
 }

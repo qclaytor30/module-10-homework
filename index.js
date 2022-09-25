@@ -1,6 +1,9 @@
 // Packages needed for this application
 const fs = require('fs');
 const inquirer = require('inquirer');
+const generateHTML = require('./lib/generateHTML');
+
+const profileCards = [];
 
 // Questions user is asked in CLI
 const welcome = () => {
@@ -11,7 +14,7 @@ const welcome = () => {
 }
 
 const addManager = () => {
-    return inquirer.prompt([
+    inquirer.prompt([
         {
             type: 'input',
             name: 'name',
@@ -32,12 +35,13 @@ const addManager = () => {
             name: 'officeNumber',
             message: 'What is the team manager\'s office number?',
         },
-    ]);
+    ])
+    .then (profileCards.push(data))
+    .then (decideAddMember());
 }
 
 const decideAddMember = () => {
-    inquirer
-        .prompt([
+    prompt([
             {
                 type: 'list',
                 name: 'addMember',
@@ -57,7 +61,7 @@ const decideAddMember = () => {
 }
 
 const addEngineer = () => {
-    return inquirer.prompt([
+    inquirer.prompt ([
         {
             type: 'input',
             name: 'name',
@@ -73,11 +77,13 @@ const addEngineer = () => {
             name: 'email',
             message: 'What is the engineer\'s GitHub username?',
         },
-    ]);
+    ])
+    .then(profileCards.push(data))
+    .then(decideAddMember());
 }
 
 const addIntern = () => {
-    return inquirer.prompt([
+    inquirer.prompt ([
         {
             type: 'input',
             name: 'name',
@@ -93,15 +99,16 @@ const addIntern = () => {
             name: 'email',
             message: 'What is the intern\'s school?',
         },
-    ]);
+    ])
+    .then(profileCards.push(data))
+    .then(decideAddMember());
 }
 
 // Initialize app
 const init = () => {
     welcome();
-    addManager();
-    decideAddMember()
-        .then((data) => fs.writeFileSync('./dist/index.html', generateHTML(data)))
+    addManagerData()
+        .then((profileCards) => fs.writeFileSync('./dist/index.html', generateHTML(profileCards)))
         .then(() => console.log('Successfully created index.html!'))
         .catch((err) => console.error(err));
 }

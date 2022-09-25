@@ -1,0 +1,4 @@
+
+profileCards.forEach(card => {
+
+})
