@@ -1,23 +1,21 @@
 // Packages needed for this application
 const inquirer = require('inquirer');
 const fs = require('fs');
-
-// const generateHTML = require('./lib/generateHTML');
-const Manager = require('./lib/manager');
+const Manager = require('./lib/Manager');
 const Engineer = require('./lib/Engineer');
 const Intern = require('./lib/Intern');
+const generateHTML = require('./lib/generateHTML');
 
 const profileCards = [];
 
 // Questions user is asked in CLI
 const welcome = () => {
-    console.log(
-        `Welcome to the team generator!
-    Use \`npm run reset\` to reset the dist/ folder.
+    console.log(`
+Welcome to the team generator!
+Use \`npm run reset\` to reset the dist/ folder.
     
-        Please build your team.`);
+Please build your team.`);
 }
-
 const collectPeopleData = () => {
     const addManagerData = () => {
         inquirer
@@ -44,12 +42,18 @@ const collectPeopleData = () => {
                 },
             ])
             .then((answers) => {
-                const manager = new Manager(answers.name, parseInt(answers.id), answers.email, parseInt(answers.officeNumber));
+                const createManager = new Manager(answers.name, parseInt(answers.id), answers.email, parseInt(answers.officeNumber));
+                const manager = {
+                    name: createManager.getName(),
+                    role: createManager.getRole(),
+                    id: createManager.getId(),
+                    email: createManager.getEmail(),
+                    officeNumber: createManager.getOfficeNumber(),
+                };
                 profileCards.push(manager);
                 decideAddMember();
             });
     }
-
     addManagerData();
 
     const addEngineerData = () => {
@@ -77,7 +81,14 @@ const collectPeopleData = () => {
                 }
             ])
             .then((answers) => {
-                const engineer = new Engineer(answers.name, parseInt(answers.id), answers.email, answers.github);
+                const createEngineer = new Engineer(answers.name, parseInt(answers.id), answers.email, answers.github);
+                const engineer = {
+                    name: createEngineer.getName(),
+                    role: createEngineer.getRole(),
+                    id: createEngineer.getId(),
+                    email: createEngineer.getEmail(),
+                    github: createEngineer.getGithub(),
+                };
                 profileCards.push(engineer);
                 decideAddMember();
             });
@@ -108,12 +119,18 @@ const collectPeopleData = () => {
                 },
             ])
             .then((answers) => {
-                const intern = new Intern(answers.name, parseInt(answers.id), answers.email, answers.school);
+                const createIntern = new Intern(answers.name, parseInt(answers.id), answers.email, answers.school);
+                const intern = {
+                    name: createIntern.getName(),
+                    role: createIntern.getRole(),
+                    id: createIntern.getId(),
+                    email: createIntern.getEmail(),
+                    school: createIntern.getSchool(),
+                };
                 profileCards.push(intern);
                 decideAddMember();
             });
     }
-
     const decideAddMember = () => {
         inquirer
             .prompt([
@@ -130,24 +147,28 @@ const collectPeopleData = () => {
                 } else if (answers.decision === 'Intern') {
                     addInternData();
                 } else {
-                    console.log(profileCards);
+        
+                    createHTMLFile(profileCards);
                     return
                 }
             });
     }
 }
 
-// Initialize app
+
+// Create HTML file with profiles based on user inputs
+const createHTMLFile = (profileCards) => {
+    const htmlPageContent = generateHTML(profileCards);
+
+    fs.writeFile('./dist/index.html', htmlPageContent, (err) => err ? console.log(err) : console.log('Successfully created index.html!'))
+}
+
+// Initialise app
 const init = () => {
     welcome();
     collectPeopleData();
 
-    const htmlPageContent = generateHTML(profileCards);
-
-    console.log(htmlPageContent);
-    // .then((profileCards) => fs.writeFileSync('./dist/index.html', generateHTML(profileCards)))
-    // .then(() => console.log('Successfully created index.html!'))
-    // .catch((err) => console.error(err));
+    
 }
 
 init();
