@@ -52,7 +52,7 @@ describe('Employee', () => {
         });
         it("should throw an error if 'email' is not a string", () => {
             // Arrange
-            const cb = () => new Employee("Steph Curry", "1", 3);
+            const cb = () => new Employee("Steph Curry", 1, 3);
             const err = new Error("Expected parameter 'email' to be a non-empty string");
 
             // Assert
@@ -69,8 +69,8 @@ describe('Employee', () => {
 
         it("should throw an error if 'email' is in an invalid format", () => {
             // Arrange
-            const cb = () => new Employee("Steph Curry", -1, "Steph Curry");
-            const err = new Error("Expected parameter 'email' to be in email format");
+            const cb = () => new Employee("Steph Curry", 1, "Steph Curry");
+            const err = new Error("Expected parameter 'email' to be a valid email address.");
 
             // Assert
             expect(cb).toThrowError(err);
@@ -111,7 +111,7 @@ describe('Employee', () => {
             // Arrange
             const role = "Employee";
             // Act
-            const result = new Employee().getRole(Employee);
+            const result = new Employee().getRole(role);
             // Assert
             expect(result).toEqual(role);
         });
