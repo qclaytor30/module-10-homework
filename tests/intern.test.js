@@ -6,9 +6,12 @@ describe('Intern', () => {
         it("should create a new object with a 'school' property set to the 'school' argument provided when called with the 'new' keyword.", () => {
             // Arrange
             const school = "Parliament Hill School";
+            const name = "Steph Curry";
+            const id = 1;
+            const email = "stephcurry";
 
             // Act
-            const obj = new Intern(school);
+            const obj = new Intern(school, name, id, email);
 
             // Assert
             expect(obj.school).toEqual(school);
@@ -17,7 +20,12 @@ describe('Intern', () => {
         // Exception tests
         it("should throw an error if 'school' is not a string", () => {
             // Arrange
-            const cb = () => new Intern("Steph Curry", 1, "stephcurry@gmail.com", 1);
+            const name = "Steph Curry";
+            const id = 1;
+            const email = "stephcurry@gmail.com";
+            const school = 1;
+            
+            //Act
             const err = new Error("Expected parameter 'school' to be a non-empty string.");
 
             // Assert
@@ -28,10 +36,13 @@ describe('Intern', () => {
     describe('getSchool', () => {
         it("should return the school of a new 'Intern' object.", () => {
             // Arrange
-            const school = "Parliament Hill School";
+            const school = "Charlotte Hill School";
+            const name = "Steph Curry";
+            const id = 1;
+            const email = "stephcurry@gmail.com";
 
             // Act
-            const result = new Intern().getSchool(school);
+            const result = new Intern(name,id,email,school).getSchool(school);
 
             // Assert
             expect(result).toEqual(school);
@@ -42,9 +53,13 @@ describe('Intern', () => {
         it("should return 'Intern' as the role of a new 'Intern' object.", () => {
             // Arrange
             const role = "Intern";
+            const name = "Steph Curry";
+            const id = 1;
+            const email = "stephcurry@gmail.com";
+            const school = "Charlotte Hill School";
 
             // Act
-            const result = new Intern().getRole(role);
+            const result = new Intern(name,id,email,school).getRole(role);
 
             // Assert
             expect(result).toEqual(role);

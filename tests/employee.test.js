@@ -5,24 +5,30 @@ describe('Employee', () => {
         it("should create a new object with a 'name' property set to the 'name' argument provided when called with the 'new' keyword", () => {
             // Arrange
             const name = "Steph Curry";
+            const id = 1;
+            const email = "stephcurry@gmail.com";
             // Act
-            const obj = new Employee(name);
+            const obj = new Employee(name,id,email);
             // Assert
             expect(obj.name).toEqual(name);
         });
         it("should create a new object with an 'id' property set to the 'id' argument provided when called with the 'new' keyword", () => {
             // Arrange
             const id = 1;
+            const name = "Steph Curry";
+            const email = "stephcurry@gmail.com";
             // Act
-            const obj = new Employee(id);
+            const obj = new Employee(id,name,email);
             // Assert
             expect(obj.id).toEqual(id);
         });
         it("should create a new object with an 'email' property set to the 'email' argument provided when called with the 'new' keyword", () => {
             // Arrange
             const email = "stephcurry@gmail.com";
+            const name = "Steph Curry";
+            const id = 1;
             // Act
-            const obj = new Employee(email);
+            const obj = new Employee(email, name, id);
             // Assert
             expect(obj.email).toEqual(email);
         });
@@ -30,19 +36,25 @@ describe('Employee', () => {
         it("should throw an error if not provided with any values", () => {
             // Arrange
             const cb = () => new Employee();
-
+        
             // Assert
             expect(cb).toThrow();
         });
         it("should throw an error if 'name' is not a string", () => {
             // Arrange
-            const cb = () => new Employee(3, 1, "stephcurry@gmail.com");
+            const name = 3;
+            const id = 1;
+            const email = "dualipa@gmail.com";
+            
+            //Act
+            const cb = () => new Employee (name, id, email);            
             const err = new Error("Expected parameter 'name' to be a non-empty string");
 
+            
             // Assert
             expect(cb).toThrowError(err);
         });
-        it("should throw an error if 'id' is not a number", () => {
+        it("should throw an error if 'id' is not a non-negative number", () => {
             // Arrange
             const cb = () => new Employee("Steph Curry", "1", "stephcurry@gmail.com");
             const err = new Error("Expected parameter 'id' to be a number");
@@ -52,25 +64,28 @@ describe('Employee', () => {
         });
         it("should throw an error if 'email' is not a string", () => {
             // Arrange
-            const cb = () => new Employee("Steph Curry", 1, 3);
-            const err = new Error("Expected parameter 'email' to be a non-empty string");
+            const name = "Steph Curry";
+            const id = "1";
+            const email = "stephcurry@gmail.com";
+
+            // Act
+            const cb = () => new Employee(name, id, email);
+            const err = new Error("Expected parameter 'email' to be a non-empty number.");
 
             // Assert
             expect(cb).toThrowError(err);
-        });
-        it("should throw an error if 'id' is less than 0", () => {
-            // Arrange
-            const cb = () => new Employee("Steph Curry", -1, "stephcurry@gmail.com");
-            const err = new Error("Expected parameter 'age' to be a non-negative number");
-
-            // Assert
-            expect(cb).toThrowError(err);
+       
         });
 
         it("should throw an error if 'email' is in an invalid format", () => {
             // Arrange
-            const cb = () => new Employee("Steph Curry", 1, "Steph Curry");
+            const name = "Steph Curry";
+            const id = 1;
+            const email = "stephcurry@gmai.com";
+            
+            //Act
             const err = new Error("Expected parameter 'email' to be a valid email address.");
+            const cb = () => new Employee (name,id,email);
 
             // Assert
             expect(cb).toThrowError(err);
@@ -80,8 +95,10 @@ describe('Employee', () => {
         it("should return the name of a new 'Employee' object", () => {
             // Arrange
             const name = "Steph Curry";
+            const id = 1;
+            const email = "stephcurry@gmail.com";
             // Act
-            const result = new Employee().getName(name);
+            const result = new Employee(name, id, email).getName(name);
             // Assert
             expect(result).toEqual(name);
         });
@@ -90,8 +107,10 @@ describe('Employee', () => {
         it("should return the id of a new 'Employee' object", () => {
             // Arrange
             const id = 1;
+            const name = "Steph Curry";
+            const email = "stephcurry@gmail.com";
             // Act
-            const result = new Employee().getId(id);
+            const result = new Employee(name,id,email).getId(id);
             // Assert
             expect(result).toEqual(id);
         });
@@ -100,8 +119,10 @@ describe('Employee', () => {
         it("should return the email of a new 'Employee' object", () => {
             // Arrange
             const email = "stephcurry@gmail.com";
+            const name = "Steph Curry";
+            const id = 1;
             // Act
-            const result = new Employee().getEmail(email);
+            const result = new Employee(name,id,email).getEmail(email);
             // Assert
             expect(result).toEqual(email);
         });
@@ -110,8 +131,11 @@ describe('Employee', () => {
         it("should return 'Employee' as the role of a new 'Employee' object", () => {
             // Arrange
             const role = "Employee";
+            const name = "Steph Curry";
+            const id = 1;
+            const email = "stephcurry@gmail.com"
             // Act
-            const result = new Employee().getRole(role);
+            const result = new Employee(name,id,email).getRole(role);
             // Assert
             expect(result).toEqual(role);
         });
