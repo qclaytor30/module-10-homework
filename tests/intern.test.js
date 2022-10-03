@@ -5,7 +5,7 @@ describe('Intern', () => {
         // Positive tests
         it("should create a new object with a 'school' property set to the 'school' argument provided when called with the 'new' keyword.", () => {
             // Arrange
-            const school = "Parliament Hill School";
+            const school = "Charlotte Hill School";
             const name = "Steph Curry";
             const id = 1;
             const email = "stephcurry";
