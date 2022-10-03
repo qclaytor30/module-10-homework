@@ -3,7 +3,7 @@ function generateHTML(profileCards) {
 
     const createCardHTML = (card, icon, uniqueListItem) => {
         return `
-            < div class="card mx-2 my-3 px-0 col-12 col-sm-6 col-md-4 col-xl-3" >
+            <div class="card mx-2 my-3 px-0 col-12 col-sm-6 col-md-4 col-xl-3">
                     <div class="card-header">
                         <h2>${card.name}</h2>
                         <h3>${card.role} ${icon}</h3>
@@ -37,7 +37,7 @@ function generateHTML(profileCards) {
         totalCardHTML = totalCardHTML.concat(cardHTML);
     });
        
-    return `< !DOCTYPE html >
+    return `<!DOCTYPE html>
         <html lang="en-US">
             <head>
                 <meta charset="UTF-8" />
