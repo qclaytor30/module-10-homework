@@ -10,6 +10,10 @@ I used javascript and the inquirer package 8.2.4
 
 ![Screenshot of application in command line](./assets/img/Screen%20Shot%202022-10-01%20at%2011.05.48%20PM.png)
 ![Screenshot of application in command line](./assets/img/Screen%20Shot%202022-10-01%20at%2011.07.13%20PM.png)
+## Screenrecording
+Video [Here](https://www.youtube.com/watch?v=Sd118D_O3Gw&ab_channel=QuincyClaytor)
+
+![screenrecording](./assets/img/module-10-screen-recording2gif.gif)
 
 ## Installation
 To install, run this command:
